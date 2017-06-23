@@ -2,7 +2,7 @@
 
 ### Installation
 ```
-$ npm i instapaper
+$ npm i instapaper-node-sdk
 ```
 
 ### Usage

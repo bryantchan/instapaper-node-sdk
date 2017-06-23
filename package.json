@@ -1,6 +1,6 @@
 {
   "name": "instapaper-node-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "bryantandk@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "asyncawait": "^1.0.6",
     "axios": "^0.16.2",
     "crypto": "^0.0.3",
     "oauth-1.0a": "^2.2.0",

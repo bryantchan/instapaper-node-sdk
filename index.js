@@ -47,7 +47,9 @@
       }
       return new Promise(function(resolve, reject) {
         return request(opts).then(function(data) {
-          if (opts.url.indexOf('access_token') > 0) {
+          if (opts.format === 'raw') {
+            return resolve(data);
+          } else if (opts.format === 'qline') {
             return resolve(qline2object(data));
           } else {
             return resolve(JSON.parse(data));
@@ -60,6 +62,7 @@
 
     Instapaper.prototype.requestToken = function(user, password) {
       return this.request({
+        format: 'qline',
         url: 'oauth/access_token',
         data: {
           x_auth_username: user,
@@ -182,6 +185,7 @@
 
     Instapaper.prototype.getText = function(bookmark_id) {
       return this.request({
+        format: 'raw',
         url: 'bookmarks/get_text',
         data: {
           bookmark_id: bookmark_id

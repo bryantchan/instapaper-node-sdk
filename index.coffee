@@ -35,7 +35,9 @@ class Instapaper
 
     return new Promise (resolve, reject) ->
       request(opts).then((data) ->
-        if opts.url.indexOf('access_token') > 0
+        if opts.format is 'raw'
+          resolve data
+        else if opts.format is 'qline'
           resolve qline2object(data)
         else
           resolve JSON.parse data
@@ -44,6 +46,7 @@ class Instapaper
 
   requestToken: (user, password) ->
     @request
+      format: 'qline'
       url: 'oauth/access_token'
       data:
         x_auth_username: user
@@ -62,12 +65,11 @@ class Instapaper
   login: (user, password) ->
     vm = @
     return new Promise (resolve, reject) ->
-      vm.requestToken(user, password).then( (authData) ->
+      vm.requestToken(user, password).then((authData) ->
         vm.setToken authData.oauth_token, authData.oauth_token_secret
         resolve()
       ).catch (err) ->
         reject err
-    
 
   listBookmarks: (params = {}) ->
     @request
@@ -123,6 +125,7 @@ class Instapaper
 
   getText: (bookmark_id) ->
     @request
+      format: 'raw'
       url: 'bookmarks/get_text'
       data:
         bookmark_id: bookmark_id

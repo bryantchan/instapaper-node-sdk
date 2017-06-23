@@ -199,7 +199,7 @@
       });
     };
 
-    Instapaper.prototype.addFolders = function(title) {
+    Instapaper.prototype.addFolder = function(title) {
       return this.request({
         url: 'folders/add',
         data: {

@@ -134,7 +134,7 @@ class Instapaper
     @request
       url: 'folders/list'
 
-  addFolders: (title) ->
+  addFolder: (title) ->
     @request
       url: 'folders/add'
       data:

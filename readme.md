@@ -1,27 +1,43 @@
-# Instapaper api for node.js
+# Instapaper APIs for Node.js
 
 ## Usage
-```
+```javascript
 
-const Instapaper = require('./index')
-
+const Instapaper = require('instapaper-node-sdk')
 const client = new Instapaper(KEY, SECRET)
 
-client.requestToken().then(function(data){
-    const token = data.oauth_token
-    const secret = data.oauth_secret
+client.login(username, password).then(() => {
+    client.listBookmarks().then(function(bookmarks){
+        //...
+    }).catch(function(err){
+        console.error(err)
+    })
 })
-
-// setToken
-client.setToken(TOKEN, SECRET)
-
-client.listBookmarks().then(function(bookmarks){
-    //...
-}).catch(function(err){
-    console.error(err)
-})
-
 ```
+
+## APIs [Instapaper API document](https://www.instapaper.com/api/full)
+#### Utils
+- requestToken(user, password)
+- setToken(token, secret)
+- verifyCredentials
+- login(user, password)
+
+#### Bookmarks
+- listBookmarks(params)
+- updateBookmark(params)
+- addBookmark(params)
+- deleteBookmark(bookmark_id)
+- starBookmark(bookmark_id)
+- unstarBookmark(bookmark_id)
+- archiveBookmark(bookmark_id)
+- unarchiveBookmark(bookmark_id)
+- moveBookmark(bookmark_id, folder_id)
+- getText(bookmark_id)
+
+#### Folders
+- listFolders
+- addFolder(title)
+- deleteFolder(folder_id)
 
 ## Todos
 - Add error handling

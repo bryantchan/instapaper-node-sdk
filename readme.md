@@ -1,6 +1,11 @@
-# Instapaper APIs for Node.js
+## Instapaper APIs for Node.js
 
-## Usage
+### Installation
+```
+$ npm i instapaper
+```
+
+### Usage
 ```javascript
 
 const Instapaper = require('instapaper-node-sdk')
@@ -15,7 +20,7 @@ client.login(username, password).then(() => {
 })
 ```
 
-## APIs [Instapaper API document](https://www.instapaper.com/api/full)
+### APIs [Instapaper API document](https://www.instapaper.com/api/full)
 #### Utils
 - requestToken(user, password)
 - setToken(token, secret)
@@ -39,5 +44,11 @@ client.login(username, password).then(() => {
 - addFolder(title)
 - deleteFolder(folder_id)
 
-## Todos
+### Todos
 - Add error handling
+
+### Terms of use
+Please read the [Instapaper API Terms of Use](https://www.instapaper.com/api/terms) before using this API client.
+
+### AUTHOR
+BryantChan <<bryantandk@gmail.com>>

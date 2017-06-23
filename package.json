@@ -1,7 +1,8 @@
 {
   "name": "instapaper-node-sdk",
   "version": "1.0.3",
-  "description": "",
+  "description": "Instapaper API wrapper for Node.js",
+  "repository": "bryantchan/instapaper-node-sdk",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

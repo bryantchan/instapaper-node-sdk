@@ -47,7 +47,11 @@
       }
       return new Promise(function(resolve, reject) {
         return request(opts).then(function(data) {
-          return resolve(qline2object(data));
+          if (opts.url.indexOf('access_token') > 0) {
+            return resolve(qline2object(data));
+          } else {
+            return resolve(JSON.parse(data));
+          }
         })["catch"](function(error) {
           return reject(error);
         });
@@ -75,6 +79,19 @@
     Instapaper.prototype.verifyCredentials = function() {
       return this.request({
         url: 'account/verify_credentials'
+      });
+    };
+
+    Instapaper.prototype.login = function(user, password) {
+      var vm;
+      vm = this;
+      return new Promise(function(resolve, reject) {
+        return vm.requestToken(user, password).then(function(authData) {
+          vm.setToken(authData.oauth_token, authData.oauth_token_secret);
+          return resolve();
+        })["catch"](function(err) {
+          return reject(err);
+        });
       });
     };
 

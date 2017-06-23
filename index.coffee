@@ -35,7 +35,10 @@ class Instapaper
 
     return new Promise (resolve, reject) ->
       request(opts).then((data) ->
-        resolve qline2object(data)
+        if opts.url.indexOf('access_token') > 0
+          resolve qline2object(data)
+        else
+          resolve JSON.parse data
       ).catch (error) ->
         reject error
 
@@ -55,6 +58,16 @@ class Instapaper
   verifyCredentials: ->
     @request
       url: 'account/verify_credentials'
+
+  login: (user, password) ->
+    vm = @
+    return new Promise (resolve, reject) ->
+      vm.requestToken(user, password).then( (authData) ->
+        vm.setToken authData.oauth_token, authData.oauth_token_secret
+        resolve()
+      ).catch (err) ->
+        reject err
+    
 
   listBookmarks: (params = {}) ->
     @request

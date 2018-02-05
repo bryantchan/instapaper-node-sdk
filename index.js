@@ -175,7 +175,7 @@
 
     Instapaper.prototype.moveBookmark = function(bookmark_id, folder_id) {
       return this.request({
-        url: 'bookmarks/unarchive',
+        url: 'bookmarks/move',
         data: {
           bookmark_id: bookmark_id,
           folder_id: folder_id

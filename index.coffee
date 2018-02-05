@@ -118,7 +118,7 @@ class Instapaper
 
   moveBookmark: (bookmark_id, folder_id) ->
     @request
-      url: 'bookmarks/unarchive'
+      url: 'bookmarks/move'
       data:
         bookmark_id: bookmark_id
         folder_id: folder_id

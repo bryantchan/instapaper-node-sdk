@@ -31,12 +31,17 @@ module.exports = class Instapaper {
 
   authorize = () => {
     return new Promise((resolve, reject) => {
-      if (this.token) return resolve(this);
+      if (this.token) {
+        return resolve(this);
+      }
 
-      if (this.authorizing) return resolve(this.authorizing);
+      if (this.authorizing) {
+        return resolve(this.authorizing);
+      }
 
-      if (!this.user || !this.password)
-        reject('please input valid username and password');
+      if (!this.user || !this.password) {
+        return reject('please input valid username and password');
+      }
 
       const options = this.buildAuthOption('1/oauth/access_token', {
         format: 'qline',
@@ -118,11 +123,9 @@ module.exports = class Instapaper {
 
   listFolders = (params = {}) => this.request('/folders/list');
 
-  addFolders = (title) => this.request('/folders/add', {title});
+  addFolder = (title) => this.request('/folders/add', {title});
 
-  deleteFolders = (folderId) => this.request('/folders/delete', {folder_id: folderId});
-
-  deleteFolders = (folderId) => this.request('/folders/delete', {folder_id: folderId});
+  deleteFolder = (folderId) => this.request('/folders/delete', {folder_id: folderId});
 
   listHighlights = (bookmarkId) => this.request(`/bookmarks/${bookmarkId}/highlights`, {}, '1.1')
 

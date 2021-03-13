@@ -115,11 +115,11 @@ module.exports = class Instapaper {
 
   archive = (bookmarkId) => this.request('/bookmarks/archive', {bookmark_id: bookmarkId});
 
-  unArchive = (bookmarkId) => this.request('/bookmarks/umarchive', {bookmark_id: bookmarkId});
+  unArchive = (bookmarkId) => this.request('/bookmarks/unArchive', {bookmark_id: bookmarkId});
 
-  getText = (bookmarkId) => this.request('/bookmarks/umarchive', {bookmark_id: bookmarkId});
+  getText = (bookmarkId) => this.request('/bookmarks/get_text', {bookmark_id: bookmarkId});
 
-  move = (bookmarkId, folderId) => this.request('/bookmarks/umarchive', {bookmark_id: bookmarkId, folder_id: folderId});
+  move = (bookmarkId, folderId) => this.request('/bookmarks/move', {bookmark_id: bookmarkId, folder_id: folderId});
 
   listFolders = (params = {}) => this.request('/folders/list');
 

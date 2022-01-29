@@ -10,7 +10,12 @@ $ npm i instapaper-node-sdk
 
 const Instapaper = require('instapaper-node-sdk')
 const client = new Instapaper(KEY, SECRET)
+
+// Use supplied Username/Password to get an oAuth key and secret
 client.setCredentials(USERNAME, PASSWORD)
+
+// Alternatively if you already have an oAuth key and secret, supply them directly to the client
+client.setOAuthCredentials(TOKEN, SECRET)
 
 // get the list of your bookmarks
 client.list({ limit: 100 }).then((data) => console.log(data)).catch((err) => console.log(err))

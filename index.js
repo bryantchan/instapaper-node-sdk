@@ -29,6 +29,13 @@ module.exports = class Instapaper {
     this.password = password;
   }
 
+  setOAuthCredentials(token, secret) {
+    this.token = {
+      key: token,
+      secret: secret
+    }
+  }
+
   authorize = () => {
     return new Promise((resolve, reject) => {
       if (this.token) {
